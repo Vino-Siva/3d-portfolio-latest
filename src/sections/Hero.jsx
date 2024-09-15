@@ -1,5 +1,11 @@
 // import React from 'react'
 
+import { PerspectiveCamera } from "@react-three/drei";
+import { Canvas } from "@react-three/fiber";
+import HackerRoom from "../components/HackerRoom";
+import { Suspense } from "react";
+import CanvasLoader from "../components/CanvasLoader";
+
 const Hero = () => {
   return (
     <section className="min-h-screen w-full flex flex-col relative ">
@@ -11,7 +17,20 @@ const Hero = () => {
           Building Products & Brands for the Web
         </p>
       </div>
-      <div className="w-full h-full absolute inset-0"></div>
+      <div className="w-full h-full absolute inset-0">
+        <Canvas className="w-full h-full">
+          <Suspense fallback={<CanvasLoader />}>
+            <PerspectiveCamera makeDefault position={[0, 0, 30]} />
+            <HackerRoom
+              scale={0.07}
+              position={[0, 0, 0]}
+              rotation={[20, 160, 0]}
+            />
+            <ambientLight intensity={1} />
+            <directionalLight intensity={0.5} position={[10, 10, 10]} />
+          </Suspense>
+        </Canvas>
+      </div>
     </section>
   );
 };
