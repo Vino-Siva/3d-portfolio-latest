@@ -1,53 +1,17 @@
-// import React from 'react'
-
 import { PerspectiveCamera } from "@react-three/drei";
 import { Canvas } from "@react-three/fiber";
 import HackerRoom from "../components/HackerRoom";
 import { Suspense } from "react";
 import CanvasLoader from "../components/CanvasLoader";
-// import { Leva, useControls } from "leva";
 import { useMediaQuery } from "react-responsive";
 import { calculateSizes } from "../constants";
+import Target from "../components/Target";
+import ReactLogo from "../components/ReactLogo";
+import Cube from "../components/Cube.jsx";
+import Rings from "../components/Ring.jsx";
+import HeroCamera from "../components/HeroCamera.jsx";
 
 const Hero = () => {
-  // const x = useControls("HackerRoom", {
-  //   positionX: {
-  //     value: 2.5,
-  //     min: -10,
-  //     max: 10,
-  //   },
-  //   positionY: {
-  //     value: 2.5,
-  //     min: -10,
-  //     max: 10,
-  //   },
-  //   positionZ: {
-  //     value: 2.5,
-  //     min: -10,
-  //     max: 10,
-  //   },
-  //   rotationX: {
-  //     value: 0,
-  //     min: -10,
-  //     max: 10,
-  //   },
-  //   rotationY: {
-  //     value: 0,
-  //     min: -10,
-  //     max: 10,
-  //   },
-  //   rotationZ: {
-  //     value: 0,
-  //     min: -10,
-  //     max: 10,
-  //   },
-  //   scale: {
-  //     value: 1,
-  //     min: 0.1,
-  //     max: 10,
-  //   },
-  // });
-
   const isSmallScreen = useMediaQuery({ maxWidth: 440 });
   const isMobile = useMediaQuery({ maxWidth: 767 });
   const isTablet = useMediaQuery({ minWidth: 768, maxWidth: 1024 });
@@ -61,23 +25,27 @@ const Hero = () => {
           Hi, I&apos;m Vinoth <span className="waving-hand">👋🏼</span>
         </p>
         <p className="hero_tag text-gray_gradient">
-          Building Products & Brands for the Web
+          Building Products & Brands
         </p>
       </div>
       <div className="w-full h-full absolute inset-0">
-        {/* <Leva /> */}
         <Canvas className="w-full h-full">
           <Suspense fallback={<CanvasLoader />}>
             <PerspectiveCamera makeDefault position={[0, 0, 20]} />
-            <HackerRoom
-              scale={sizes.deskScale}
-              position={sizes.deskPosition}
-              rotation={[0.5, -Math.PI, 0]}
-              // position={[x.positionX, x.positionY, x.positionZ]}
-              // rotation={[x.rotationX, x.rotationY, x.rotationZ]}
-              // scale={[x.scale, x.scale, x.scale]}
-            />
-            <group></group>
+            <HeroCamera isMobile={isMobile}>
+              <HackerRoom
+                scale={sizes.deskScale}
+                position={sizes.deskPosition}
+                rotation={[0.5, -Math.PI, 0]}
+              />
+            </HeroCamera>
+
+            <group>
+              <Target position={sizes.targetPosition} />
+              <ReactLogo position={sizes.reactLogoPosition} />
+              <Cube position={sizes.cubePosition} />
+              <Rings position={sizes.ringPosition} />
+            </group>
             <ambientLight intensity={1} />
             <directionalLight intensity={0.5} position={[10, 10, 10]} />
           </Suspense>
