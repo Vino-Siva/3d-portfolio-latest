@@ -29,8 +29,8 @@ const Hero = () => {
           Building Products & Brands
         </p>
       </div>
-      <div className="w-full h-full absolute inset-0">
-        <Canvas className="w-full h-full">
+      <div className="size-full absolute inset-0">
+        <Canvas className="size-full">
           <Suspense fallback={<CanvasLoader />}>
             <PerspectiveCamera makeDefault position={[0, 0, 20]} />
             <HeroCamera isMobile={isMobile}>
