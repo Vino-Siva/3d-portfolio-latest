@@ -3,7 +3,7 @@ import Clients from "./sections/Clients";
 import Contact from "./sections/Contact";
 import Hero from "./sections/Hero";
 import Navbar from "./sections/Navbar";
-import Projects from "./sections/projects";
+import Projects from "./sections/Projects";
 import Footer from "./sections/Footer";
 import Experience from "./sections/Experience";
 
